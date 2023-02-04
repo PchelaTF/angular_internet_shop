@@ -1,0 +1,45 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <h2 class="text-center">Add product</h2>
+
+  <div class="form-control">
+    <label for="type">Type</label>
+    <select name="type" id="type" formControlName="type">
+        <option value="phone">Phone</option>
+        <option value="tablet">Tablet</option>
+        <option value="laptop">Laptop</option>
+    </select>
+    <div *ngIf="type.invalid && type.touched" class="validation">
+      <small *ngIf="type.errors?.['required']">Chose product type</small>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label for="title">Name</label>
+    <input id="title" type="title" formControlName="title">
+    <div *ngIf="title.invalid && title.touched" class="validation">
+      <small *ngIf="title.errors?.['required']">Enter product name</small>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label for="photo">Photo:</label>
+    <quill-editor formControlName="photo"></quill-editor>
+  </div>
+
+  <div class="form-control">
+    <label for="info">Information:</label>
+    <quill-editor formControlName="info"></quill-editor>
+  </div>
+
+  <div class="form-control">
+    <label for="price">Price</label>
+    <input id="price" type="price" formControlName="price">
+    <div *ngIf="price.invalid && price.touched" class="validation">
+      <small *ngIf="price.errors?.['required']">Enter product price</small>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid || submitted">Add</button>
+
+</form>

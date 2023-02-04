@@ -1,0 +1,40 @@
+<div *ngIf="orders.length; else noOrders">
+    <h2 class="txt-center">Table of orders</h2>
+
+    <table>
+        <thead class="bg-dark">
+        <tr>
+            <td>Date</td>
+            <td>Phone</td>
+            <td>Name</td>
+            <td>Adress</td>
+            <td>Products</td>
+            <td>Price</td>
+            <td>Status</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let order of orders">
+            <td>{{order.date | date : 'medium'}}</td>
+            <td>{{order.phone}}</td>
+            <td>{{order.name}}</td>
+            <td>{{order.adress}}</td>
+            <td>
+                <div *ngFor="let product of order.orders">{{product.title}}</div>
+            </td>
+            <td>
+                <div class="text-center">{{order.price}}$</div>
+                <div class="text-center">{{order.payment}}</div>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="remove(order.id!)">Complited</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #noOrders>
+    <p class="text-center">No orders...</p>
+</ng-template>
